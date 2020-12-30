@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mobileConverter="clr-namespace:MobileConverter;assembly=MobileConverter"
+             x:Class="MobileConverter.MainPage">
+
+    <ContentPage.BindingContext>
+        <mobileConverter:MainViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="0.2*" />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Column="4"
+			        Grid.Row="1"
+			        Text="+"
+			        Font="Large"
+			        BorderWidth="1"
+			        HorizontalOptions="Center"
+			        VerticalOptions="CenterAndExpand"
+					x:Name="getconvert"
+			        Command="{Binding ConvertCommand}"
+			        CommandParameter="{Binding}"/>
+
+            <DatePicker Grid.Column="1"
+						Grid.ColumnSpan="3"
+			            Grid.Row="1"
+			            Date="{Binding SelectedDate}"
+			            />
+
+            <Picker Grid.Column="1"
+					Grid.Row="3"
+					Grid.ColumnSpan="3"
+					ItemsSource="{Binding CurrencysFirst}"
+					ItemDisplayBinding="{Binding CharCode}"
+					SelectedItem="{Binding SelectedCurrencyFirst}"
+					SelectedIndex="{Binding IdSelectedFirst}"/>
+
+            <Entry Grid.Column="4"
+			       Grid.Row="3"
+			       Placeholder="Номинал"
+			       VerticalOptions="CenterAndExpand"
+			       Text="{Binding NominalFirst}"
+			       ReturnCommand="{Binding SetNominalFirst}"
+			/>
+
+            <Picker Grid.Column="1"
+			        Grid.Row="4"
+			        Grid.ColumnSpan="3"
+			        ItemsSource="{Binding CurrencysFirst}"
+			        ItemDisplayBinding="{Binding CharCode}"
+			        SelectedItem="{Binding SelectedCurrencySecond}"
+			        SelectedIndex="{Binding IdSelectedSecond}"/>
+
+            <Entry Grid.Column="4"
+			       Grid.Row="4"
+			       Placeholder="Номинал"
+			       VerticalOptions="CenterAndExpand"
+			       Text="{Binding NominalSecond}"
+			       ReturnCommand="{Binding SetNominalSecond}"
+			       />
+
+            <ContentView Grid.Column="4" Grid.Row="2" IsVisible="{Binding ActivInditificator}">
+                <ActivityIndicator IsRunning="True" Color="Blue"/>
+            </ContentView>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>
